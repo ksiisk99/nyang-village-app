@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#563E3E36"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="end"
+    tools:context=".activity.ChatActivity">
+
+
+    <include layout="@layout/user_list"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/background_gradient"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:gravity="center"
+            >
+            <Button
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:background="@drawable/ic_baseline_notifications_24"
+                android:id="@+id/notiBtn"
+                android:layout_marginStart="@dimen/_10sdp"
+                ></Button>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_17ssp"
+                android:text="냥빌리지"
+                android:id="@+id/titleTextView"
+                android:gravity="center"
+                android:layout_weight="10"
+                android:textColor="@color/white"
+                android:fontFamily="@font/jalnan"
+                ></TextView>
+            <Button
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:background="@drawable/ic_baseline_menu_24"
+                android:id="@+id/menuBtn"
+                android:layout_marginEnd="@dimen/_10sdp"
+                ></Button>
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/recyclerView"
+            android:background="@drawable/list_background"
+            android:paddingTop="@dimen/_15sdp"
+            ></androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:background="@color/white"
+            >
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_weight="10"
+                android:hint="Message..."
+                android:textSize="@dimen/_17ssp"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:inputType="textMultiLine"
+                android:maxLines="5"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:id="@+id/messageEdit"
+                android:background="@drawable/chat_send_background"
+                android:textColor="#4C4948"
+                android:padding="@dimen/_1sdp"
+                android:fontFamily="@font/scd4regular"
+                ></EditText>
+            <Button
+                android:layout_width="@dimen/_33sdp"
+                android:layout_height="@dimen/_33sdp"
+                android:id="@+id/sendBtn"
+                android:textSize="@dimen/_15ssp"
+                android:enabled="true"
+                android:gravity="center"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:background="@drawable/ic_sendbtn"
+                ></Button>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

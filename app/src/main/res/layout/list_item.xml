@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/_16sdp"
+    android:elevation="@dimen/_30sdp"
+    android:padding="@dimen/_5sdp"
+    android:layout_margin="@dimen/_10sdp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_77sdp"
+        android:paddingStart="@dimen/_15sdp">
+        <TextView
+            android:id="@+id/subjectTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="데구응용"
+            android:textColor="#4C4948"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/scd8heavy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="@dimen/_18sdp"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:paddingEnd="@dimen/_5sdp"></TextView>
+
+        <TextView
+            android:id="@+id/professorTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="이무성 교수님"
+            android:textColor="#4C4948"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="@font/scd4regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subjectTextView"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            ></TextView>
+
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/participantsTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/ic_baseline_list_person_24"
+            android:layout_marginEnd="@dimen/_1sdp"
+            ></ImageView>
+        <TextView
+            android:id="@+id/participantsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textSize="@dimen/_13ssp"
+            android:textColor="#4C4948"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/_17sdp"
+            android:fontFamily="@font/scd5medium"
+            ></TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

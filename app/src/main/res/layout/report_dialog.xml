@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_250sdp"
+    android:layout_height="@dimen/_230sdp"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@drawable/login_edit_bg"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:id="@+id/reportName"
+        android:textSize="@dimen/_15ssp"
+        android:gravity="center"
+        android:text="신  고"
+        android:textColor="@color/white"
+        android:background="@drawable/report_title_bg"
+        android:fontFamily="@font/scd6bold"
+        ></TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/reportContent"
+        android:textSize="@dimen/_14ssp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:text="[닉네임: SanginKim]"
+        android:textColor="#ff7301"
+        android:fontFamily="@font/scd5medium"
+        android:layout_marginTop="@dimen/_10sdp"
+        ></TextView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_75sdp"
+        android:id="@+id/reportWhy"
+        android:hint="사용자 신고 시 사유를 적어주세요."
+        android:textSize="@dimen/_12ssp"
+        android:lines="5"
+        android:maxLines="100"
+        android:inputType="textMultiLine"
+        android:background="@drawable/report_btn_bg"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+
+        android:fontFamily="@font/scd5medium"
+        ></EditText>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingStart="@dimen/_14sdp"
+        android:paddingEnd="@dimen/_14sdp"
+        >
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="취소"
+            android:id="@+id/reportCancel"
+            android:fontFamily="@font/scd5medium"
+            android:textSize="@dimen/_13ssp"
+            android:textColor="#ff7301"
+            android:background="@drawable/report_btn_bg"
+            android:layout_marginEnd="@dimen/_2sdp"
+            ></Button>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="전송"
+            android:id="@+id/reportSend"
+            android:fontFamily="@font/scd5medium"
+            android:textSize="@dimen/_13ssp"
+            android:textColor="#ff7301"
+            android:background="@drawable/report_btn_bg"
+            android:layout_marginStart="@dimen/_2sdp"
+            ></Button>
+    </LinearLayout>
+</LinearLayout>
