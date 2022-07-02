@@ -264,8 +264,8 @@ public class ChatActivity extends AppCompatActivity {
 
     public void initStomp(){
         if(stompClient.isConnected())return;
-        //stompClient.connect(headerList);
-        stompClient.connect();
+        stompClient.connect(headerList);
+        //stompClient.connect();
 
 
 
