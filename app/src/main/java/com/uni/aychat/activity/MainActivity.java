@@ -71,12 +71,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         db = RoomDB.getInstance(getApplicationContext());
         dao = db.getRoomInfoDao();
-        dao.DeleteAllRoomInfos();
-        dao.DeleteAllRoomInNames();
-        //dao.UpdateUserInfoAutoLogin(0);
-        dao.DeleteUserInfo();
-        dao.DeleteChatInfos();
         token = dao.SelectUserInfoToken();
+//        dao.DeleteAllRoomInfos();
+//        dao.DeleteAllRoomInNames();
+//        //dao.UpdateUserInfoAutoLogin(0);
+//        dao.DeleteUserInfo();
+//        dao.DeleteChatInfos();
+
         if (token == null)
             getToken();
 //        if (dao.SelectUserInfoSuspendedDate() != null) { //정지회원 이라면
