@@ -39,7 +39,7 @@ public class FcmService extends FirebaseMessagingService{
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         //Log.d(TAG, "From: " + message.getFrom());
-
+//
         int roomId=Integer.parseInt(message.getData().get("roomId"));
         if(ChatAdapter.isConnect()==roomId)return; //해당하는 채팅방에 대해서만 fcm을 받으면 안된다.
 
