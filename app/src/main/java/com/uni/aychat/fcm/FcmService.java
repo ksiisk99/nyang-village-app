@@ -38,14 +38,14 @@ public class FcmService extends FirebaseMessagingService{
         super.onMessageReceived(message);
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        Log.d(TAG, "From: " + message.getFrom());
+        //Log.d(TAG, "From: " + message.getFrom());
 
         int roomId=Integer.parseInt(message.getData().get("roomId"));
         if(ChatAdapter.isConnect()==roomId)return; //해당하는 채팅방에 대해서만 fcm을 받으면 안된다.
 
         // Check if message contains a data payload.
         if (message.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + message.getData());
+            //Log.d(TAG, "Message data payload: " + message.getData());
             String nickName=message.getData().get("nickName");
             int type=Integer.parseInt(message.getData().get("type"));
 
@@ -65,7 +65,7 @@ public class FcmService extends FirebaseMessagingService{
                     roomInfoDao.InsertChatInfo(chatInfo2);
                     break;
                 case 2:
-                    Log.d("nickName",message.getData().get("nickName"));
+                    //Log.d("nickName",message.getData().get("nickName"));
                     String content=message.getData().get("content");
 
                     ChatInfo chatInfo3;
@@ -152,7 +152,7 @@ public class FcmService extends FirebaseMessagingService{
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // FCM registration token to your app server..onNewToken(token);
-        Log.d("NewToken",token);
+        //Log.d("NewToken",token);
         if(roomInfoDao.SelectUserInfo()==null)//최초 로그인
             roomInfoDao.InsertUserInfo(new UserInfo("1",token,null,0,null));
         else
