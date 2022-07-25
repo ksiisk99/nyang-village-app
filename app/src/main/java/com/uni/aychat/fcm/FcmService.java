@@ -86,6 +86,7 @@ public class FcmService extends FirebaseMessagingService{
                     roomInfoDao.InsertChatInfo(chatInfo3);
 
                     NotiRoomInfo notiRoomInfo=roomInfoDao.SelectRoomInfoNoti(roomId);
+                    if(notiRoomInfo==null)break;
                     if(notiRoomInfo.getNoti()==1){ //알림
                         try {
                             sendNotification(nickName,content,notiRoomInfo.getRoomName(),roomId);
