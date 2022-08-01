@@ -29,7 +29,9 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginBottom="@dimen/_18sdp"
             android:layout_marginEnd="@dimen/_50sdp"
-            android:paddingEnd="@dimen/_5sdp"></TextView>
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:paddingEnd="@dimen/_7sdp"></TextView>
 
         <TextView
             android:id="@+id/professorTextView"
