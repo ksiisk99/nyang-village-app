@@ -47,7 +47,7 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Call<ResLogout> callLogout=retrofitService.reqLogout(new ReqLogout(dao.SelectUserInfoStudentId()));
+                Call<ResLogout> callLogout=retrofitService.reqLogout(new ReqLogout(dao.SelectUserInfoStudentId(),dao.SelectUserInfoToken()));
                 callLogout.enqueue(new Callback<ResLogout>() {
                     @Override
                     public void onResponse(Call<ResLogout> call, Response<ResLogout> response) {
