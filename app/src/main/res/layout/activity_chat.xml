@@ -90,6 +90,7 @@
                 android:textColor="#4C4948"
                 android:padding="@dimen/_1sdp"
                 android:fontFamily="@font/scd4regular"
+                android:maxLength="250"
                 ></EditText>
             <Button
                 android:layout_width="@dimen/_33sdp"
