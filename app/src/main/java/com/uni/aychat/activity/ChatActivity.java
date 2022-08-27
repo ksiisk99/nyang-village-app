@@ -503,10 +503,25 @@ public class ChatActivity extends AppCompatActivity {
         String mm=String.valueOf(getTime.charAt(2))+String.valueOf(getTime.charAt(3));
 
         int h=Integer.parseInt(hh);
-        if(h>=12){
-            return "오후 "+String.valueOf(h-12)+":"+mm;
-        }else{
-            return "오전 "+hh+":"+mm;
+        StringBuilder sb=new StringBuilder();
+        if(h>12){
+            sb.append("오후 ");
+            sb.append(String.valueOf(h-12));
+            sb.append(":");
+            sb.append(mm);
+            return sb.toString();
+        }else if(h==12){
+            sb.append("오후 ");
+            sb.append(hh);
+            sb.append(":");
+            sb.append(mm);
+            return sb.toString();
+        }else {
+            sb.append("오전 ");
+            sb.append(hh);
+            sb.append(":");
+            sb.append(mm);
+            return sb.toString();
         }
     }
 
