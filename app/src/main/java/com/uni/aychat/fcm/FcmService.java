@@ -29,8 +29,8 @@ import java.net.URLDecoder;
 public class FcmService extends FirebaseMessagingService{
 
     private static final String TAG="fcm";
-    RoomDB roomDB=RoomDB.getInstance();
-    RoomInfoDao roomInfoDao=roomDB.getRoomInfoDao();
+    private RoomDB roomDB;
+    private RoomInfoDao roomInfoDao;
 
 
     @Override
@@ -40,6 +40,7 @@ public class FcmService extends FirebaseMessagingService{
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         //Log.d(TAG, "From: " + message.getFrom());
 //
+
         int roomId=Integer.parseInt(message.getData().get("roomId"));
         if(ChatAdapter.isConnect()==roomId)return; //해당하는 채팅방에 대해서만 fcm을 받으면 안된다.
 
@@ -48,6 +49,12 @@ public class FcmService extends FirebaseMessagingService{
             //Log.d(TAG, "Message data payload: " + message.getData());
             String nickName=message.getData().get("nickName");
             int type=Integer.parseInt(message.getData().get("type"));
+
+            roomDB=RoomDB.getInstance();
+            roomInfoDao=roomDB.getRoomInfoDao();
+            if(nickName.equals(roomInfoDao.SelectRoomInfoInNickName(roomId))){
+                return;
+            }
 
             switch(type){
                 case 0:
@@ -86,7 +93,9 @@ public class FcmService extends FirebaseMessagingService{
                     roomInfoDao.InsertChatInfo(chatInfo3);
 
                     NotiRoomInfo notiRoomInfo=roomInfoDao.SelectRoomInfoNoti(roomId);
-                    if(notiRoomInfo==null)break;
+                    if(notiRoomInfo==null) {
+                        return;
+                    }
                     if(notiRoomInfo.getNoti()==1){ //알림
                         try {
                             sendNotification(nickName,content,notiRoomInfo.getRoomName(),roomId);
@@ -102,9 +111,9 @@ public class FcmService extends FirebaseMessagingService{
         }
 
         // Check if message contains a notification payload.
-        if (message.getNotification() != null) {
-            Log.d(TAG, "Message Notification Body: " + message.getNotification().getBody());
-        }
+//        if (message.getNotification() != null) {
+//            Log.d(TAG, "Message Notification Body: " + message.getNotification().getBody());
+//        }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
@@ -154,9 +163,13 @@ public class FcmService extends FirebaseMessagingService{
         // manage this apps subscriptions on the server side, send the
         // FCM registration token to your app server..onNewToken(token);
         //Log.d("NewToken",token);
-        if(roomInfoDao.SelectUserInfo()==null)//최초 로그인
-            roomInfoDao.InsertUserInfo(new UserInfo("1",token,null,0,null));
-        else
+        roomDB=RoomDB.getInstance();
+        roomInfoDao=roomDB.getRoomInfoDao();
+        if(roomInfoDao.SelectUserInfo()==null) {//최초 로그인
+            roomInfoDao.InsertUserInfo(new UserInfo("1", token, null, 0, null));
+        }
+        else {
             roomInfoDao.UpdateUserInfoToken(token); //토큰 변경
+        }
     }
 }

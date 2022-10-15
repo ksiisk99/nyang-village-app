@@ -83,6 +83,7 @@ public class ChatActivity extends AppCompatActivity {
     private ConnectivityManager connectivityManager;
     private NotificationManager notificationManager;
     private LinearLayoutManager manager;
+    private ConnectivityManager.NetworkCallback networkCallback;
 
 
     @Override
@@ -107,7 +108,6 @@ public class ChatActivity extends AppCompatActivity {
         reportDialog.setContentView(R.layout.report_dialog);
 
         url=getString(R.string.ws_server_url);
-
         drawerView=(View)findViewById(R.id.drawerView);
         drawerLayout.addDrawerListener(listener);
         drawerView.setOnTouchListener(new View.OnTouchListener() {
@@ -179,10 +179,10 @@ public class ChatActivity extends AppCompatActivity {
             notiBtn.setBackgroundResource(R.drawable.ic_baseline_notifications_off_24);
         }
 
-        connectivityManager = getSystemService(ConnectivityManager.class);
-        connectivityManager.registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback() {
+        networkCallback=new ConnectivityManager.NetworkCallback(){
             @Override
             public void onAvailable(Network network) {
+                if(stompClient.isConnected())return;
 
                 initStomp();
 
@@ -197,16 +197,20 @@ public class ChatActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
                 stompClient.send("/pub/ay/connectchat",jsonObject.toString()).subscribe();
 
             }
 
             @Override
             public void onLost(Network network) {
+                stompClient.disconnect();
                 adapter.connect=-1;
             }
-        });
+        };
+
+        connectivityManager = getSystemService(ConnectivityManager.class);
+        //connectivityManager.registerDefaultNetworkCallback(networkCallback);
+
 
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
@@ -272,7 +276,7 @@ public class ChatActivity extends AppCompatActivity {
         stompClient.topic("/sub/chat/"+roomId2).subscribe(topicMessage->{
         JsonParser parser=new JsonParser();
         JsonObject jsonObject=(JsonObject) parser.parse(topicMessage.getPayload());
-       // Log.d("receive Msg", jsonObject.toString());
+        Log.d("receive Msg", jsonObject.toString());
 
 
         if(jsonObject.get("start")!=null){ //웹소켓 연결한 회원
@@ -526,11 +530,17 @@ public class ChatActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        connectivityManager.registerDefaultNetworkCallback(networkCallback);
+    }
 
     @Override
     protected void onStop() {
         super.onStop();
         stompClient.disconnect();
+        connectivityManager.unregisterNetworkCallback(networkCallback);
         adapter.connect=-1;
         dao.UpdateRoomInfoPosition(chatInfos.size()-1,roomId); //이전 채팅 데이터 기록
     }

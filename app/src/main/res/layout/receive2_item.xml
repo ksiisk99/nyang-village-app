@@ -39,6 +39,7 @@
             android:layout_gravity="bottom"
             android:textColor="#4C4948"
             android:text="2022"
+            android:fontFamily="@font/scd4regular"
             />
     </LinearLayout>
 
